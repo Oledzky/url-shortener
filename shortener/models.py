@@ -10,15 +10,17 @@ CODE_LEN = 7
 # Wykorzystuję litery i cyfry do losowego generowania kodu
 ALPHABET = string.ascii_letters + string.digits
 
+
 # Funkcja generująca unikalny kod
 def gen_code():
     return ''.join(secrets.choice(ALPHABET) for i in range(CODE_LEN))
 
+
 class ShortURL(models.Model):
-    #Pełny URL do skrócenia
+    # Pełny URL do skrócenia
     original_url = models.URLField()
 
-    #Wygenerowany unikalny kod
+    # Wygenerowany unikalny kod
     code = models.CharField(max_length=CODE_LEN, unique=True, default=gen_code)
 
     # Data utworzenia wpisu (np. do ustawienia wygasania)

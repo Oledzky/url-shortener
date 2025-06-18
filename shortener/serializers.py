@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import ShortURL
 
+
 # Serializer do tworzenia skróconych URLi
 class ShortenSerializer(serializers.ModelSerializer):
     class Meta:

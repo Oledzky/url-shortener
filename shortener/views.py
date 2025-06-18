@@ -9,11 +9,12 @@ from django.shortcuts import redirect
 from .models import ShortURL
 from .serializers import ShortenSerializer, ExpandSerializer
 
+
 # Widok tworzący skrócony URL (POST/ /shorten)
 class ShortenView(generics.CreateAPIView):
     serializer_class = ShortenSerializer
 
-# Naspisanie metody create, aby zwrócić pełny skrócony URL
+    # Naspisanie metody create, aby zwrócić pełny skrócony URL
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -25,17 +26,19 @@ class ShortenView(generics.CreateAPIView):
 
         return Response(
             {
-            'short_url': f'{host}/{short.code}',
-            'code': short.code,
+                'short_url': f'{host}/{short.code}',
+                'code': short.code,
             },
             status=status.HTTP_201_CREATED,
         )
 
+
 # Widok pozwalający rozszyfrować skrócony kod (GET/expand/<code>)
 class ExpandView(generics.RetrieveAPIView):
-        lookup_field = 'code'               # Szukanie po polu 'code'
-        queryset = ShortURL.objects.all()
-        serializer_class = ExpandSerializer
+    lookup_field = 'code'  # Szukanie po polu 'code'
+    queryset = ShortURL.objects.all()
+    serializer_class = ExpandSerializer
+
 
 # Widok do przekierowania użytkowania na oryginalny adres (GET /<code>)
 def redirect_view(request, code):
