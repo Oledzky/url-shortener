@@ -1,11 +1,10 @@
-from django.shortcuts import render
-
 # Create your views here.
 
+from django.http import Http404
+from django.shortcuts import redirect
 from rest_framework import generics, status
 from rest_framework.response import Response
-from django.http import HttpResponseRedirect, Http404
-from django.shortcuts import redirect
+
 from .models import ShortURL
 from .serializers import ShortenSerializer, ExpandSerializer
 

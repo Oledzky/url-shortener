@@ -1,7 +1,7 @@
-from django.db import models
-
 # Create your models here.
-import secrets, string
+import secrets
+import string
+
 from django.db import models
 
 # Długość kodu skróconego URL-a

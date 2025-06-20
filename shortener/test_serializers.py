@@ -1,7 +1,7 @@
 import pytest
+
 from shortener.models import ShortURL
 from shortener.serializers import ShortenSerializer, ExpandSerializer
-from django.core.exceptions import ValidationError
 
 
 # Sprawdza, czy serializer akceptuje poprawny adres URL
